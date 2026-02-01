@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container result-container">
+        <div class="card result-card">
+            <h1>Analysis Result</h1>
+
+            <div class="image-preview">
+                <img src="{{ url_for('static', filename='uploads/' + image_file) }}" alt="Uploaded Image">
+            </div>
+
+            <div class="predictions">
+                <h2>Top Predictions</h2>
+                <ul class="prediction-list">
+                    {% for pred in predictions %}
+                    <li class="prediction-item">
+                        <span class="class-name">{{ pred.class }}</span>
+                        <span class="probability">{{ pred.probability }}</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: {{ pred.probability }}"></div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <a href="/" class="back-link">Classify Another Image</a>
+        </div>
+    </div>
+</body>
+
+</html>

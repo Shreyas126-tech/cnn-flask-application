@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Image Classifier</h1>
+            <p class="subtitle">Upload an image to identify objects using AI</p>
+            
+            <form action="/predict" method="post" enctype="multipart/form-data" class="upload-form">
+                <div class="file-drop-area">
+                    <span class="choose-file-button">Choose Image</span>
+                    <span class="file-message">or drag and drop here</span>
+                    <input class="file-input" type="file" name="file" accept=".png, .jpg, .jpeg" required>
+                </div>
+                <button type="submit" class="submit-btn">Classify Image</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simple script to show filename on selection
+        const fileInput = document.querySelector('.file-input');
+        const fileMessage = document.querySelector('.file-message');
+
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                fileMessage.textContent = this.files[0].name;
+            }
+        });
+    </script>
+</body>
+</html>
